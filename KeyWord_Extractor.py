@@ -54,20 +54,21 @@ article_blob = TextBlob(article_text)
  
 # Loop through each of the words in soup_blob to see if any of them are stopwords
 # If they are, they are removed from the text blob. This is how we get our keywords
-filtered_words = []
-for word in article_blob.words:
-    if word.lower() not in stops:
-        filtered_words.append(word.lower())
-filtered_text = ' '.join(filtered_words) 
+def filter_words(article_blob):
+    filtered_words = []
+    for word in article_blob.words:
+        if word.lower() not in stops:
+            filtered_words.append(word.lower())
+    filtered_text = ' '.join(filtered_words) 
 
-rake.extract_keywords_from_text(filtered_text)
+    rake.extract_keywords_from_text(filtered_text)
 
-keywords = rake.get_ranked_phrases()
+    keywords = rake.get_ranked_phrases()
 
-phrases = [phrase.strip() for phrase in keywords]
+    phrases = [phrase.strip() for phrase in keywords]
 
-print(phrases)
+    print(phrases)
 
-print_keyword_file(phrases)
+    print_keyword_file(phrases)
 
 #print_keyword_file(keywords)
