@@ -72,7 +72,7 @@ def extract_keywords(rake_obj, filtered_text):
 def print_keyword_file(phrases):
     file_name = "keywords.txt"
     key_file = open(file_name, 'w')
-    for word in keywords:
+    for word in phrases:
         key_file.write(word)
         key_file.write('\n')
     print("Keywords have been extracted to ", file_name)
@@ -80,7 +80,8 @@ def print_keyword_file(phrases):
 # The actual program where all the functions come together
 def main():
     init_nltk()
-    stops = get_stopwords()
+    language = input('Enter a language: ')
+    stops = get_stopwords(language)
     punctuation = string.punctuation
     rake = init_rake(stops, punctuation)
 
