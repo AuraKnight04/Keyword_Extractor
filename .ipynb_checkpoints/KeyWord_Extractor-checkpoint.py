@@ -1,6 +1,4 @@
 import nltk
-import PySimpleGUI as sg
-import ssl
 from nltk.corpus import stopwords
 from rake_nltk import Rake
 from textblob import TextBlob
@@ -15,6 +13,7 @@ nltk.download('stopwords')
 # initialize the stopwords
 def init_nltk():
     nltk.download('stopwords')
+    nltk.download('punkt_tab')
 def get_stopwords(language):
     stops = stopwords.words(language)
     return stops
@@ -34,7 +33,7 @@ def get_url():
 
 
 # Send request to that URL to access the text
-# Use Beautiful Soup to scrape the text and store it in a variable. 
+# Use Beatiful Soup to scrape the text and store it in a variable. 
 # List Comprehension: Shorter syntax for adding items to new list from old list
 def scrap_text(url):    
     r = requests.get(url)
@@ -72,7 +71,7 @@ def extract_keywords(rake_obj, filtered_text):
 # It makes that file and writes each keyword in article_blob to it
 # This can then be accessed by the user.
 def print_keyword_file(phrases):
-    file_name = "keywords1.txt"
+    file_name = "keywords.txt"
     key_file = open(file_name, 'w')
     for word in phrases:
         key_file.write(word)
